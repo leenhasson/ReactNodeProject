@@ -1,0 +1,61 @@
+/* General Styling for Edit Class Page */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+.edit-container {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: "Playfair Display", serif;
+    color: #5c3d2e; /* Soft brown */
+    background-color: #fdf8f4; /* Light background */
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.edit-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #b38b7c; /* Soft pinkish-brown */
+}
+
+.edit-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.edit-container label {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #5c3d2e;
+}
+
+.edit-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Playfair Display", serif;
+}
+
+.edit-container button {
+    width: 100%;
+    padding: 12px;
+    background: #b38b7c; /* Soft pinkish-brown */
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+}
+
+.edit-container button:hover {
+    background: #9c7265;
+}
