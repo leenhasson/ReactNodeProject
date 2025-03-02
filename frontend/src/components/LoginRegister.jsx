@@ -1,24 +1,40 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import axios from "../API/api";
 import "../styles/LoginRegister.css";
 
 function LoginRegister({ setUser }) {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ username: null , email: null , password: null });
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
+    if (formData.username.length < 3) {
+      setError("Username must be at least 3 characters long.");
+      return;
+    }
 
+    if (formData.password.length < 3 || formData.password.length > 8) {
+      setError("Password must be between 3 and 8 characters long.");
+      return;
+    }
+
+    // Validate password contains at least 1 letter and 1 digit
+    if (!/(?=.*[A-Za-z])/.test(formData.password) || !/(?=.*\d)/.test(formData.password)) {
+      setError("Password must include at least one letter and one digit.");
+      return;
+    }
 
     try {
-      const url = `http://localhost:5000/api/users/${isLogin ? "login" : "register"}`;
+      const url = `/api/users/${isLogin ? "login" : "register"}`;
       const { data } = await axios.post(url, formData, { withCredentials: true });
       setUser(data.user);
+      navigate("/classes");
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong.");
     }

@@ -225,6 +225,12 @@ nav a:hover {
   background: #f9b7e7;
 }
 
+.navbar-user {
+  position: absolute;
+  right: 20px;
+}
+
+
 /* Edit Button */
 .edit-button {
   margin-top: 10px;

@@ -59,9 +59,3 @@
 .edit-container button:hover {
     background: #9c7265;
 }
-
-.current-image-preview {
-    height: 400px;
-    width: 400px;
-    border-radius: 10px;
-}

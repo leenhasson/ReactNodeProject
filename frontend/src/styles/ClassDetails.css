@@ -27,3 +27,14 @@
   width: 400px;
   border-radius: 10px;
 }
+
+.delete-class-button {
+  font-size: 24px;
+  margin: 0.5rem auto;
+  background-color: lightcoral;
+}
+
+.edit-class-button {
+  font-size: 24px;
+  margin: 0.5rem auto;
+}

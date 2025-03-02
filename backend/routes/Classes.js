@@ -8,8 +8,9 @@ const path = require("path");
 const { isLoggedIn, isAdmin } = require('../config/permissions');
 
 // Configuring storage for multer uploads
+const storageDir = path.join(__dirname, '..', 'uploads');
 const storage = multer.diskStorage({
-  destination: "../uploads/",
+  destination: storageDir,
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname)); // ex: 131247128952.png
   },
@@ -49,7 +50,7 @@ router.get("/:id", isLoggedIn, (req, res) => {
 
     // If we have an image, save its url
     if (classDetail.image) {
-      classDetail.image = `${req.protocol}://${req.get("host")}${classDetail.image}`;
+      classDetail.image = `http://localhost:3000${classDetail.image}`;
     }
 
     res.json(classDetail);
@@ -58,7 +59,7 @@ router.get("/:id", isLoggedIn, (req, res) => {
 
 // POST api/classes
 // Adding a new pilates class
-router.post("/", isAdmin, upload.single("image"), (req, res) => {
+router.post("/", isAdmin, upload.single("upload"), (req, res) => {
   const { name, instructor, level, duration, description } = req.body;
 
  // Check if all values are available
@@ -91,7 +92,7 @@ router.post("/", isAdmin, upload.single("image"), (req, res) => {
 
 // PUT api/classes/:id
 // Updates an existing pilates class by id
-router.put("/:id", isAdmin, upload.single("image"), (req, res) => {
+router.put("/:id", isAdmin, upload.single("upload"), (req, res) => {
   const { name, instructor, level, duration, description } = req.body;
   const { id } = req.params;
 

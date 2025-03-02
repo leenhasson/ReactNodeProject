@@ -1,19 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../API/api";
 import "../styles/ClassDetails.css";
 
-import img1 from "../assets/img1.jpg";
-import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.jpg";
-import img4 from "../assets/img4.jpg";
-import img5 from "../assets/img5.jpg";
-import img6 from "../assets/img6.jpg";
-import img7 from "../assets/img7.jpg";
-
-const classImages = [img1, img2, img3, img4, img5, img6, img7];
-
-function ClassDetails() {
+function ClassDetails({user}) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [classDetail, setClassDetail] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,24 +12,39 @@ function ClassDetails() {
 
   useEffect(() => {
     axios
-      .get(`https://jsonplaceholder.typicode.com/users/${id}`)
+      .get(`/api/classes/${id}`)
       .then((response) => {
         setClassDetail({
           id: response.data.id,
           name: response.data.name,
-          level: "Beginner",
-          description: "A great Pilates class for beginners.",
-          instructor: response.data.username,
-          duration: "60 minutes",
-          image: classImages[response.data.id - 1]
+          level: response.data.level,
+          description: response.data.description,
+          instructor: response.data.instructor,
+          duration: `${response.data.duration} minutes`,
+          image: response.data.image
         });
         setLoading(false);
       })
       .catch(() => {
-        setError("Failed to load class details.");
+        setError("Failed to load class details. Are you sure you are logged in?");
         setLoading(false);
       });
   }, [id]);
+
+  const handleEditClass = () => {
+    navigate(`/edit-class/${id}`);
+  }
+
+  const handleDeleteClass = () => {
+    if (window.confirm('Are you sure you want to delete this article?')) {
+      try {
+        axios.delete(`/api/classes/${id}`);
+        navigate("/classes");
+      } catch (err) {
+        setError(err);
+      }
+    }
+  }
 
   return (
     <div className="class-details-container">
@@ -55,6 +61,16 @@ function ClassDetails() {
           <p><strong>Duration:</strong> {classDetail.duration}</p>
           <p><strong>Description:</strong> {classDetail.description}</p>
         </>
+      )}
+      {user && user.user_role === 'admin' && (
+        <button className="edit-class-button" onClick={handleEditClass}>
+          Edit Class
+        </button>
+      )}
+      {user && user.user_role === 'admin' && (
+        <button className="delete-class-button" onClick={handleDeleteClass}>
+          Delete Class
+        </button>
       )}
     </div>
   );
