@@ -1,0 +1,86 @@
+/* General styling similar to .contact-container */
+.login-register-container {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: "Playfair Display", serif;
+    color: #5c3d2e; /* Soft brown */
+    background-color: #fdf8f4; /* Light background */
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title similar to .contact-title */
+.login-register-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Description text */
+.login-register-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+}
+
+/* Form styling similar to .contact-form */
+.login-register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.login-register-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Playfair Display", serif;
+}
+
+/* Password fields same as input fields */
+.login-register-form input[type="password"] {
+    font-family: "Playfair Display", serif;
+}
+
+/* Button similar to .contact-button */
+.login-register-button {
+    background: #b38b7c; /* Soft pinkish-brown */
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-register-button:hover {
+    background: #9c7265;
+}
+
+/* Toggle login/register link */
+.toggle {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #5c3d2e;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.toggle:hover {
+    color: #9c7265;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .login-register-container {
+        width: 90%;
+    }
+}
